@@ -1,10 +1,9 @@
 ---
-- hosts: db 
-  become: yes
+- hosts: db
+  become: true
   gather_facts: 0
   tasks:
-
-     - name: Update the system
+    - name: Update the system
        yum:
          name: '*'
          state: latest
@@ -29,17 +28,4 @@
          dest: /var/www/html/index.html
        tags:
          - file_copy
-       notify: Restart Apache
-
-  handlers:
- 
-    - name: Restart Apache
-      systemd:
-        name: httpd
-        state: restarted
-
          
-
-
-
-
